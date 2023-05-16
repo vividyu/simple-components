@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 function Subitem() {
     const [serialNum, setSerialNum] = useState(0);
     const [Item, setItem] = useState([]);
-    const [keyword, setKeyword] = useState(null);
+    const [keyword, setKeyword] = useState("");
 
     const handleAdd = () => {
         // Compute the new serial number based on the old one
@@ -34,11 +34,6 @@ function Subitem() {
     const handleChange = (e) => {
         const curKeyword = e.target.value;
         setKeyword(curKeyword);
-
-        setItem((prevItem) => {
-            return prevItem.filter((item) => item.title <= curKeyword);
-        })
-
     }
 
     return (
@@ -46,7 +41,7 @@ function Subitem() {
             <h2>This is a subitem list</h2>
             <input type="text" value={keyword} onChange={handleChange}></input>
             <ul>
-                {Item.map((item) => {
+                {Item.filter(item => item.title <= keyword || keyword === "").map((item) => {
                     if (item !== null) return (
                         <li key={item.id} onClick={() => handleExpand(item.id)}><p>list item is {item.title}</p>
                             {item.status && <p>Subitem sn is {item.title}</p>}
@@ -58,6 +53,7 @@ function Subitem() {
             <button onClick={handleAdd}>Add</button>
         </>
     );
+
 
 }
 
