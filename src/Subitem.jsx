@@ -76,7 +76,7 @@ function Subitem() {
 
     return (
         <>
-            <input placeholder="Search something..." type="text" value={keyword} onChange={handleChange}></input>
+            <input className="search-bar" placeholder="Search something..." type="text" value={keyword} onChange={handleChange}></input>
             <h2>This is a subitem list</h2>
 
             {keyword === "" && <button onClick={handleAdd}>Add</button>}
