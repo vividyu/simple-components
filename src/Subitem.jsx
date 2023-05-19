@@ -36,9 +36,9 @@ function Subitem() {
     const handleChange = (e) => {
         const curKeyword = e.target.value;
         setKeyword(curKeyword);
-        if(curKeyword === ""){
-            setLoadNum(LOAD_RECORD_NUM);
-        }
+
+        setLoadNum(LOAD_RECORD_NUM);
+
     }
 
     const generateLi = () => {
@@ -66,9 +66,10 @@ function Subitem() {
 
     const handleLoadMore = () => {
         const len = Item.length;
-        setLoadNum((prevLoadnum)=>{
-            if(prevLoadnum >= len) return len;
-            else return prevLoadnum + LOAD_RECORD_NUM;
+        setLoadNum((prevLoadnum) => {
+            const newLoadnum = prevLoadnum + LOAD_RECORD_NUM;
+            if (newLoadnum >= len) return len;
+            else return newLoadnum;
         })
         console.log(loadNum);
     }
